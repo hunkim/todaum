@@ -38,6 +38,8 @@ export function Home({ preset = "" }: { preset?: string }) {
         to + daum
         <br />
         Daum·카카오와 무관한 개인 프로젝트입니다.
+        <br />
+        <a href="/privacy">개인정보 처리방침</a>{" · "}<a href="/support">지원</a>
       </p>
     </main>
   );

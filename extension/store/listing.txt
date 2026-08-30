@@ -1,0 +1,19 @@
+이름: ToDaum
+짧은 설명: 네이버 뉴스를 같은 다음 기사로 엽니다. Daum·카카오와 무관한 개인 프로젝트입니다.
+카테고리: News
+언어: 한국어
+
+설명:
+ToDaum은 네이버 뉴스 링크를 같은 다음 기사로 바꿔 줍니다.
+
+Chrome에서 n.news.naver.com 기사를 열면, 제목으로 다음 뉴스를 찾아 해당 페이지로 이동합니다. 같은 기사가 없으면 원래 네이버 주소를 그대로 둡니다.
+
+아이콘을 눌러 이 동작을 끌 수 있습니다.
+
+웹에서도 쓸 수 있습니다: https://todaum.vercel.app/
+
+ToDaum은 Daum·카카오와 무관한 개인 프로젝트입니다. 상표와 로고는 각 권리자에게 있습니다.
+
+개인정보 처리방침: https://todaum.vercel.app/privacy
+
+지원: https://todaum.vercel.app/support

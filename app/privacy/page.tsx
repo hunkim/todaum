@@ -1,0 +1,34 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "개인정보 처리방침 — ToDaum",
+  description: "ToDaum은 개인정보를 수집하지 않습니다.",
+};
+
+export default function Privacy() {
+  return (
+    <main className="wrap">
+      <div className="legal">
+        <h1>개인정보 처리방침</h1>
+        <p>
+          ToDaum은 Daum·카카오와 무관한 개인 프로젝트입니다. 웹사이트와
+          Chrome 확장 모두 개인정보를 수집·저장·공유하지 않습니다.
+        </p>
+        <p>
+          확장은 네이버 뉴스 주소만 읽고, 같은 다음 기사를 찾기 위해
+          todaum.vercel.app으로 보냅니다. 계정, 쿠키, 방문 기록, 분석
+          도구를 쓰지 않습니다.
+        </p>
+        <p>
+          문의:{" "}
+          <a href="https://github.com/hunkim/todaum/issues">
+            github.com/hunkim/todaum
+          </a>
+        </p>
+        <p className="hint">
+          <a href="/">← ToDaum</a>
+        </p>
+      </div>
+    </main>
+  );
+}
