@@ -1,0 +1,119 @@
+:root {
+  --bg: #f6f1e8;
+  --ink: #1a1408;
+  --muted: #6b5e48;
+  --card: #fffcf7;
+  --line: #eadfcb;
+  --daum: #ffcd00;
+  --daum-ink: #1a1408;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", system-ui, sans-serif;
+  background:
+    radial-gradient(900px 420px at 50% -8%, #ffe9a3 0%, transparent 62%),
+    var(--bg);
+  color: var(--ink);
+}
+
+.wrap {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px 48px;
+}
+
+.brand {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 42px;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+.sun {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--daum);
+  box-shadow: 0 0 0 6px #fff6c8;
+}
+.tag {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.card {
+  width: min(640px, 100%);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 18px;
+  box-shadow: 0 20px 50px rgba(80, 50, 0, 0.08);
+}
+
+form.row {
+  display: flex;
+  gap: 8px;
+}
+input[type="url"], input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  height: 52px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0 16px;
+  font-size: 16px;
+  background: #fff;
+  color: var(--ink);
+  outline: none;
+}
+input:focus { border-color: #e0b000; box-shadow: 0 0 0 4px #ffe9a3; }
+button.go {
+  height: 52px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--daum);
+  color: var(--daum-ink);
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+button.go:hover { filter: brightness(0.97); }
+
+.hint {
+  margin: 12px 4px 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.hint code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  background: #fff6d8;
+  padding: 1px 6px;
+  border-radius: 6px;
+}
+
+.foot {
+  margin-top: 28px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.going {
+  text-align: center;
+  color: var(--muted);
+}
