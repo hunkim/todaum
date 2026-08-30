@@ -8,7 +8,7 @@ export function Home({ preset = "" }: { preset?: string }) {
             src="/apple-touch-icon.png"
             width={40}
             height={40}
-            alt="Daum"
+            alt=""
           />
           ToDaum
         </div>
@@ -34,7 +34,11 @@ export function Home({ preset = "" }: { preset?: string }) {
           같은 기사가 없으면 원래 링크로 갑니다.
         </p>
       </div>
-      <p className="foot">to + daum</p>
+      <p className="foot">
+        to + daum
+        <br />
+        Daum·카카오와 무관한 개인 프로젝트입니다.
+      </p>
     </main>
   );
 }
