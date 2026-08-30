@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "ToDaum",
+  "version": "1.0.0",
+  "description": "네이버 뉴스를 같은 다음 기사로 엽니다. Daum·카카오와 무관한 개인 프로젝트입니다.",
+  "permissions": ["webNavigation", "storage"],
+  "host_permissions": [
+    "https://n.news.naver.com/*",
+    "https://news.naver.com/*",
+    "https://m.news.naver.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "ToDaum",
+    "default_icon": {
+      "16": "icons/16.png",
+      "32": "icons/32.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  }
+}

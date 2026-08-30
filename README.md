@@ -7,3 +7,11 @@
 - `https://todaum.vercel.app/?u=<뉴스 URL>`
 
 ToDaum은 Daum·카카오와 무관한 개인 프로젝트입니다.
+
+## Chrome 확장
+
+`n.news.naver.com` 기사를 열면 같은 다음 뉴스로 바꿉니다.
+
+1. Chrome에서 `chrome://extensions`
+2. 개발자 모드 켜기
+3. **압축해제된 확장 프로그램을 로드합니다** → 이 저장소의 `extension` 폴더
