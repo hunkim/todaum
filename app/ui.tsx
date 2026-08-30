@@ -3,7 +3,13 @@ export function Home({ preset = "" }: { preset?: string }) {
     <main className="wrap">
       <div className="brand">
         <div className="mark">
-          <span className="sun" aria-hidden />
+          <img
+            className="logo"
+            src="/apple-touch-icon.png"
+            width={40}
+            height={40}
+            alt="Daum"
+          />
           ToDaum
         </div>
         <p className="tag">네이버 뉴스를 다음으로.</p>
