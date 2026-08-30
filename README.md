@@ -16,7 +16,7 @@ ToDaum은 Daum·카카오와 무관한 개인 프로젝트입니다.
 2. 개발자 모드 켜기
 3. **압축해제된 확장 프로그램을 로드합니다** → `ToDaum` 폴더
 
-웹에서도 ZIP을 받을 수 있습니다: https://todaum.vercel.app/todaum-chrome.zip
+웹에서도 ZIP을 받을 수 있습니다: https://todaum.vercel.app/ToDaum-1.0.1.zip
 
 ## 페이지
 

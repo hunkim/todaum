@@ -1,4 +1,7 @@
 import { CopyChrome } from "./copy-chrome";
+import manifest from "../extension/manifest.json";
+
+const zipName = `ToDaum-${manifest.version}.zip`;
 
 export function Home({ preset = "" }: { preset?: string }) {
   return (
@@ -38,8 +41,8 @@ export function Home({ preset = "" }: { preset?: string }) {
       </div>
       <div className="ext">
         <p className="ext-title">스토어 심사 전 · Chrome 확장</p>
-        <a className="ext-btn" href="/todaum-chrome.zip" download="ToDaum.zip">
-          ZIP 받아서 설치
+        <a className="ext-btn" href={`/${zipName}`} download={zipName}>
+          ZIP 받아서 설치 · {manifest.version}
         </a>
         <ol className="ext-steps">
           <li>방금 받은 파일의 압축을 풉니다.</li>
