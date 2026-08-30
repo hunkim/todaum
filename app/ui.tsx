@@ -1,3 +1,5 @@
+import { CopyChrome } from "./copy-chrome";
+
 export function Home({ preset = "" }: { preset?: string }) {
   return (
     <main className="wrap">
@@ -42,7 +44,7 @@ export function Home({ preset = "" }: { preset?: string }) {
         <ol className="ext-steps">
           <li>방금 받은 파일의 압축을 풉니다.</li>
           <li>
-            주소창에 <code>chrome://extensions</code> 를 입력합니다.
+            <CopyChrome /> 한 뒤 주소창에 붙여넣습니다.
           </li>
           <li>
             오른쪽 위 <b>개발자 모드</b>를 켜고,{" "}
@@ -50,6 +52,11 @@ export function Home({ preset = "" }: { preset?: string }) {
             <code>ToDaum</code> 폴더를 고르면 끝입니다.
           </li>
         </ol>
+        <img
+          className="ext-shot"
+          src="/chrome-extensions-hint.png"
+          alt="개발자 모드를 켜고 압축해제된 확장 프로그램을 로드합니다"
+        />
       </div>
       <p className="foot">
         to + daum
