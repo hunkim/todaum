@@ -30,6 +30,40 @@ export function urlFromSlug(slug: string[] | undefined): string | null {
   return normalizeUrl(slug.map((p) => decodeURIComponent(p)).join("/"));
 }
 
+
+function isNaverNewsHost(url: string): boolean {
+  try {
+    const h = new URL(url).hostname;
+    return (
+      h === "n.news.naver.com" ||
+      h === "news.naver.com" ||
+      h === "m.news.naver.com"
+    );
+  } catch {
+    return false;
+  }
+}
+
+function isNaverArticle(url: string): boolean {
+  try {
+    const u = new URL(url);
+    if (!isNaverNewsHost(url)) return false;
+    const path = u.pathname;
+    if (/\/article\/\d+\/\d+(?:$|[/?#])/.test(path)) return true;
+    if (/\/mnews\/article\/\d+\/\d+(?:$|[/?#])/.test(path)) return true;
+    if (
+      /\/(?:main\/)?read\.(?:naver|nhn)$/.test(path) &&
+      u.searchParams.get("oid") &&
+      u.searchParams.get("aid")
+    ) {
+      return true;
+    }
+    return false;
+  } catch {
+    return false;
+  }
+}
+
 function isDaumNews(url: string): boolean {
   try {
     const h = new URL(url).hostname;
@@ -123,6 +157,7 @@ export async function resolveToDaum(source: string): Promise<string> {
   const url = normalizeUrl(source);
   if (!url) return source;
   if (isDaumNews(url)) return url;
+  if (isNaverNewsHost(url) && !isNaverArticle(url)) return url;
 
   const page = await fetchText(url);
   const title = page ? extractTitle(page) : null;

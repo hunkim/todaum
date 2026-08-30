@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ToDaum",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "네이버 뉴스를 같은 다음 기사로 엽니다. Daum·카카오와 무관한 개인 프로젝트입니다.",
   "permissions": [
     "webNavigation",

@@ -7,10 +7,21 @@ const HOSTS = new Set([
 const recent = new Map();
 const SKIP_MS = 60_000;
 
-function isNaverNews(url) {
+function isNaverArticle(url) {
   try {
     const u = new URL(url);
-    return u.protocol === "https:" && HOSTS.has(u.hostname);
+    if (u.protocol !== "https:" || !HOSTS.has(u.hostname)) return false;
+    const path = u.pathname;
+    if (/\/article\/\d+\/\d+(?:$|[/?#])/.test(path)) return true;
+    if (/\/mnews\/article\/\d+\/\d+(?:$|[/?#])/.test(path)) return true;
+    if (
+      /\/(?:main\/)?read\.(?:naver|nhn)$/.test(path) &&
+      u.searchParams.get("oid") &&
+      u.searchParams.get("aid")
+    ) {
+      return true;
+    }
+    return false;
   } catch {
     return false;
   }
@@ -38,7 +49,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
 
 chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
   if (details.frameId !== 0) return;
-  if (!isNaverNews(details.url)) return;
+  if (!isNaverArticle(details.url)) return;
 
   const { enabled } = await chrome.storage.local.get({ enabled: true });
   if (enabled === false) return;
@@ -57,4 +68,6 @@ chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
   }
 });
 
-chrome.storage.local.get({ enabled: true }).then(({ enabled }) => setBadge(enabled !== false));
+chrome.storage.local.get({ enabled: true }).then(({ enabled }) =>
+  setBadge(enabled !== false)
+);
