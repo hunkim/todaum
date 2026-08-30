@@ -1,5 +1,5 @@
 const UA =
-  "Mozilla/5.0 (compatible; ToDaum/1.0; +https://todum.vercel.app)";
+  "Mozilla/5.0 (compatible; ToDaum/1.0; +https://todaum.vercel.app)";
 
 export function normalizeUrl(raw: string): string | null {
   let s = raw.trim();

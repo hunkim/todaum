@@ -24,7 +24,7 @@ export function Home({ preset = "" }: { preset?: string }) {
           </button>
         </form>
         <p className="hint">
-          주소창에 <code>todum.vercel.app/뉴스URL</code> 을 붙여도 됩니다.
+          주소창에 <code>todaum.vercel.app/뉴스URL</code> 을 붙여도 됩니다.
           같은 기사가 없으면 원래 링크로 갑니다.
         </p>
       </div>
