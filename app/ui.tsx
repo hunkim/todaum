@@ -34,6 +34,23 @@ export function Home({ preset = "" }: { preset?: string }) {
           같은 기사가 없으면 원래 링크로 갑니다.
         </p>
       </div>
+      <div className="ext">
+        <p className="ext-title">스토어 심사 전 · Chrome 확장</p>
+        <a className="ext-btn" href="/todaum-chrome.zip" download="ToDaum.zip">
+          ZIP 받아서 설치
+        </a>
+        <ol className="ext-steps">
+          <li>방금 받은 파일의 압축을 풉니다.</li>
+          <li>
+            주소창에 <code>chrome://extensions</code> 를 입력합니다.
+          </li>
+          <li>
+            오른쪽 위 <b>개발자 모드</b>를 켜고,{" "}
+            <b>압축해제된 확장 프로그램을 로드합니다</b>에서{" "}
+            <code>ToDaum</code> 폴더를 고르면 끝입니다.
+          </li>
+        </ol>
+      </div>
       <p className="foot">
         to + daum
         <br />
