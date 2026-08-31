@@ -113,7 +113,7 @@ button.go:hover { filter: brightness(0.97); }
   font-size: 12px;
   text-align: center;
   line-height: 1.6;
-  max-width: 360px;
+  max-width: 420px;
 }
 
 .going {
@@ -121,7 +121,7 @@ button.go:hover { filter: brightness(0.97); }
   color: var(--muted);
 }
 
-.foot a, .legal a { color: inherit; }
+.foot a, .legal a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .legal {
   width: min(640px, 100%);
   background: var(--card);

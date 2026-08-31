@@ -50,7 +50,17 @@ export function Home({ preset = "" }: { preset?: string }) {
         <br />
         Daum·카카오와 무관한 개인 프로젝트입니다.
         <br />
-        <a href="/privacy">개인정보 처리방침</a>{" · "}<a href="/support">지원</a>
+        <a href="/privacy">개인정보 처리방침</a>
+        {" · "}
+        <a href="/support">지원</a>
+        {" · "}
+        <a
+          href="https://github.com/hunkim/todaum"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          소스 코드
+        </a>
       </p>
     </main>
   );
