@@ -1,8 +1,3 @@
-import { CopyChrome } from "./copy-chrome";
-import manifest from "../extension/manifest.json";
-
-const zipName = `ToDaum-${manifest.version}.zip`;
-
 export function Home({ preset = "" }: { preset?: string }) {
   return (
     <main className="wrap">
@@ -40,26 +35,15 @@ export function Home({ preset = "" }: { preset?: string }) {
         </p>
       </div>
       <div className="ext">
-        <p className="ext-title">스토어 심사 전 · Chrome 확장</p>
-        <a className="ext-btn" href={`/${zipName}`} download={zipName}>
-          ZIP 받아서 설치 · {manifest.version}
+        <p className="ext-title">Chrome 확장</p>
+        <a
+          className="ext-btn"
+          href="https://chromewebstore.google.com/detail/todaum/klkoineoeoekejnmipmdidpkfbcdkdah"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Chrome Web Store에서 설치
         </a>
-        <ol className="ext-steps">
-          <li>방금 받은 파일의 압축을 풉니다.</li>
-          <li>
-            <CopyChrome /> 한 뒤 주소창에 붙여넣습니다.
-          </li>
-          <li>
-            오른쪽 위 <b>개발자 모드</b>를 켜고,{" "}
-            <b>압축해제된 확장 프로그램을 로드합니다</b>에서{" "}
-            <code>ToDaum</code> 폴더를 고르면 끝입니다.
-          </li>
-        </ol>
-        <img
-          className="ext-shot"
-          src="/chrome-extensions-hint.png"
-          alt="개발자 모드를 켜고 압축해제된 확장 프로그램을 로드합니다"
-        />
       </div>
       <p className="foot">
         to + daum
