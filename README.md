@@ -12,14 +12,9 @@ ToDaum은 Daum·카카오와 무관한 개인 프로젝트입니다.
 
 `n.news.naver.com` 기사를 열면 같은 다음 뉴스로 바꿉니다.
 
-1. Chrome에서 `chrome://extensions`
-2. 개발자 모드 켜기
-3. **압축해제된 확장 프로그램을 로드합니다** → `ToDaum` 폴더
-
-웹에서도 ZIP을 받을 수 있습니다: https://todaum.vercel.app/ToDaum-1.0.1.zip
+[Chrome Web Store에서 설치](https://chromewebstore.google.com/detail/todaum/klkoineoeoekejnmipmdidpkfbcdkdah)
 
 ## 페이지
 
 - [개인정보 처리방침](https://todaum.vercel.app/privacy)
 - [지원](https://todaum.vercel.app/support)
-
