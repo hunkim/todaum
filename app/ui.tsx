@@ -35,10 +35,10 @@ export function Home({ preset = "" }: { preset?: string }) {
           />
           ToDaum
         </div>
-        <h1 className="title">네이버 뉴스를 다음으로.</h1>
+        <h1 className="title">뉴스 링크를 다음으로.</h1>
         <p className="sub">
-          네이버·언론사 뉴스 링크를 붙여넣으면 같은 기사를 다음 뉴스에서
-          열어 드립니다.
+          뉴스 기사 링크를 붙여넣으면 다음에서 같은 기사를 찾아 엽니다.
+          기사가 아니면 그대로 두고, 없으면 원래 링크로 갑니다.
         </p>
         <form className="row" action="/" method="get">
           <input
@@ -68,7 +68,7 @@ export function Home({ preset = "" }: { preset?: string }) {
           <span className="ext-text">
             <span className="ext-title">Chrome 확장</span>
             <span className="ext-desc">
-              네이버 뉴스 기사를 열면 자동으로 다음으로 전환됩니다.
+              뉴스 기사를 열면 같은 다음 뉴스로 바꿉니다. 홈·목록은 그대로입니다.
             </span>
           </span>
           <span className="ext-cta">설치 →</span>

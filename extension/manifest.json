@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "ToDaum",
-  "version": "1.0.1",
-  "description": "네이버 뉴스를 같은 다음 기사로 엽니다. Daum·카카오와 무관한 개인 프로젝트입니다.",
+  "version": "1.0.2",
+  "description": "뉴스 기사를 같은 다음 뉴스로 엽니다. 홈·목록은 그대로 둡니다. Daum·카카오와 무관한 개인 프로젝트입니다.",
   "permissions": [
     "webNavigation",
     "storage"
