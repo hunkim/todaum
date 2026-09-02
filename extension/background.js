@@ -1,4 +1,4 @@
-const HOSTS = new Set([
+const NAVER_HOSTS = new Set([
   "n.news.naver.com",
   "news.naver.com",
   "m.news.naver.com",
@@ -7,20 +7,66 @@ const HOSTS = new Set([
 const recent = new Map();
 const SKIP_MS = 60_000;
 
-function isNaverArticle(url) {
+function isDaumHost(hostname) {
+  return (
+    hostname === "v.daum.net" ||
+    hostname === "news.daum.net" ||
+    hostname.endsWith(".daum.net")
+  );
+}
+
+function isNaverArticle(u) {
+  const path = u.pathname;
+  if (/\/article\/\d+\/\d+(?:$|[/?#])/.test(path)) return true;
+  if (/\/mnews\/article\/\d+\/\d+(?:$|[/?#])/.test(path)) return true;
+  if (
+    /\/(?:main\/)?read\.(?:naver|nhn)$/.test(path) &&
+    u.searchParams.get("oid") &&
+    u.searchParams.get("aid")
+  ) {
+    return true;
+  }
+  return false;
+}
+
+function isNewsArticle(url) {
   try {
     const u = new URL(url);
-    if (u.protocol !== "https:" || !HOSTS.has(u.hostname)) return false;
+    if (u.protocol !== "https:") return false;
+    if (isDaumHost(u.hostname)) return false;
+
     const path = u.pathname;
-    if (/\/article\/\d+\/\d+(?:$|[/?#])/.test(path)) return true;
-    if (/\/mnews\/article\/\d+\/\d+(?:$|[/?#])/.test(path)) return true;
+    if (path === "/" || path === "") return false;
     if (
-      /\/(?:main\/)?read\.(?:naver|nhn)$/.test(path) &&
-      u.searchParams.get("oid") &&
-      u.searchParams.get("aid")
+      /\/(search|login|signin|signup|member|subscribe|mynews|newspaper)(\/|$)/i.test(
+        path
+      )
+    ) {
+      return false;
+    }
+
+    if (NAVER_HOSTS.has(u.hostname)) return isNaverArticle(u);
+
+    if (/\/20\d{2}\/\d{1,2}\/\d{1,2}\//.test(path)) return true;
+    if (/\/articles?\/\d+/.test(path)) return true;
+    if (/\/arti\/.+\d{5,}/.test(path)) return true;
+    if (/\/news\/[^/]+\/article\//.test(path)) return true;
+    if (/\/view\/\d+/.test(path)) return true;
+    if (
+      /\/read\.\w+$/.test(path) &&
+      (u.searchParams.get("oid") ||
+        u.searchParams.get("no") ||
+        u.searchParams.get("idxno"))
     ) {
       return true;
     }
+
+    const last = (path.replace(/\/$/, "").split("/").pop() || "").replace(
+      /\.(html?|php)$/i,
+      ""
+    );
+    if (/^\d{5,}$/.test(last)) return true;
+    if (/^[A-Z0-9]{12,}$/i.test(last)) return true;
     return false;
   } catch {
     return false;
@@ -49,7 +95,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
 
 chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
   if (details.frameId !== 0) return;
-  if (!isNaverArticle(details.url)) return;
+  if (!isNewsArticle(details.url)) return;
 
   const { enabled } = await chrome.storage.local.get({ enabled: true });
   if (enabled === false) return;

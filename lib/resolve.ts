@@ -31,33 +31,63 @@ export function urlFromSlug(slug: string[] | undefined): string | null {
 }
 
 
-function isNaverNewsHost(url: string): boolean {
-  try {
-    const h = new URL(url).hostname;
-    return (
-      h === "n.news.naver.com" ||
-      h === "news.naver.com" ||
-      h === "m.news.naver.com"
-    );
-  } catch {
-    return false;
+const NAVER_HOSTS = new Set([
+  "n.news.naver.com",
+  "news.naver.com",
+  "m.news.naver.com",
+]);
+
+function isNaverArticle(u: URL): boolean {
+  const path = u.pathname;
+  if (/\/article\/\d+\/\d+(?:$|[/?#])/.test(path)) return true;
+  if (/\/mnews\/article\/\d+\/\d+(?:$|[/?#])/.test(path)) return true;
+  if (
+    /\/(?:main\/)?read\.(?:naver|nhn)$/.test(path) &&
+    u.searchParams.get("oid") &&
+    u.searchParams.get("aid")
+  ) {
+    return true;
   }
+  return false;
 }
 
-function isNaverArticle(url: string): boolean {
+export function isNewsArticle(url: string): boolean {
   try {
     const u = new URL(url);
-    if (!isNaverNewsHost(url)) return false;
+    if (u.protocol !== "https:") return false;
+    const h = u.hostname;
+    if (h === "v.daum.net" || h === "news.daum.net" || h.endsWith(".daum.net")) {
+      return false;
+    }
     const path = u.pathname;
-    if (/\/article\/\d+\/\d+(?:$|[/?#])/.test(path)) return true;
-    if (/\/mnews\/article\/\d+\/\d+(?:$|[/?#])/.test(path)) return true;
+    if (path === "/" || path === "") return false;
     if (
-      /\/(?:main\/)?read\.(?:naver|nhn)$/.test(path) &&
-      u.searchParams.get("oid") &&
-      u.searchParams.get("aid")
+      /\/(search|login|signin|signup|member|subscribe|mynews|newspaper)(\/|$)/i.test(
+        path
+      )
+    ) {
+      return false;
+    }
+    if (NAVER_HOSTS.has(h)) return isNaverArticle(u);
+    if (/\/20\d{2}\/\d{1,2}\/\d{1,2}\//.test(path)) return true;
+    if (/\/articles?\/\d+/.test(path)) return true;
+    if (/\/arti\/.+\d{5,}/.test(path)) return true;
+    if (/\/news\/[^/]+\/article\//.test(path)) return true;
+    if (/\/view\/\d+/.test(path)) return true;
+    if (
+      /\/read\.\w+$/.test(path) &&
+      (u.searchParams.get("oid") ||
+        u.searchParams.get("no") ||
+        u.searchParams.get("idxno"))
     ) {
       return true;
     }
+    const last = (path.replace(/\/$/, "").split("/").pop() || "").replace(
+      /\.(html?|php)$/i,
+      ""
+    );
+    if (/^\d{5,}$/.test(last)) return true;
+    if (/^[A-Z0-9]{12,}$/i.test(last)) return true;
     return false;
   } catch {
     return false;
@@ -157,7 +187,7 @@ export async function resolveToDaum(source: string): Promise<string> {
   const url = normalizeUrl(source);
   if (!url) return source;
   if (isDaumNews(url)) return url;
-  if (isNaverNewsHost(url) && !isNaverArticle(url)) return url;
+  if (!isNewsArticle(url)) return url;
 
   const page = await fetchText(url);
   const title = page ? extractTitle(page) : null;
